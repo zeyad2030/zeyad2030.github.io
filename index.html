@@ -2,755 +2,1191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Zeyad | Developer Portfolio</title>
-    <meta name="description" content="Zeyad's personal portfolio, projects and skills">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        :root {
-            --bg: #07070a;
-            --card: rgba(255,255,255,0.055);
-            --border: rgba(255,255,255,0.09);
-            --text: #f5f5f5;
-            --muted: #9b9ba3;
-            --accent: #7c5cff;
-            --accent2: #00d4ff;
-        }
-
-        body {
-            font-family: Inter, Arial, sans-serif;
-            background:
-                radial-gradient(circle at 10% 10%, rgba(124,92,255,.16), transparent 30%),
-                radial-gradient(circle at 90% 20%, rgba(0,212,255,.10), transparent 25%),
-                var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        .glow {
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: .12;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .glow.one {
-            background: var(--accent);
-            top: 10%;
-            left: -150px;
-        }
-
-        .glow.two {
-            background: var(--accent2);
-            right: -150px;
-            top: 55%;
-        }
-
-        /* Navigation */
-
-        nav {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: min(92%, 950px);
-            padding: 14px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(10,10,15,.72);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
-
-        .logo span {
-            color: var(--accent);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
-
-        nav a {
-            color: var(--muted);
-            text-decoration: none;
-            font-size: 14px;
-            transition: .25s;
-        }
-
-        nav a:hover {
-            color: white;
-        }
-
-        /* Hero */
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 120px 20px 70px;
-        }
-
-        .hero-content {
-            max-width: 850px;
-            animation: fadeUp 1s ease forwards;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 8px 14px;
-            border: 1px solid var(--border);
-            background: var(--card);
-            border-radius: 50px;
-            color: #bdb8ff;
-            font-size: 13px;
-            margin-bottom: 25px;
-            backdrop-filter: blur(10px);
-        }
-
-        h1 {
-            font-size: clamp(50px, 9vw, 100px);
-            line-height: .95;
-            letter-spacing: -5px;
-            margin-bottom: 25px;
-        }
-
-        h1 span {
-            background: linear-gradient(90deg, #fff, #9b8cff, #00d4ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .hero p {
-            max-width: 650px;
-            margin: auto;
-            color: var(--muted);
-            font-size: 18px;
-            line-height: 1.8;
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 35px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 13px 22px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: .3s;
-        }
-
-        .btn-primary {
-            background: white;
-            color: black;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255,255,255,.15);
-        }
-
-        .btn-secondary {
-            border: 1px solid var(--border);
-            color: white;
-            background: var(--card);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--accent);
-            transform: translateY(-3px);
-        }
-
-        /* Sections */
-
-        section {
-            width: min(1100px, 92%);
-            margin: auto;
-            padding: 100px 0;
-        }
-
-        .section-title {
-            margin-bottom: 45px;
-        }
-
-        .section-title small {
-            color: var(--accent);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .section-title h2 {
-            font-size: 42px;
-            margin-top: 8px;
-            letter-spacing: -2px;
-        }
-
-        .section-title p {
-            color: var(--muted);
-            margin-top: 10px;
-        }
-
-        /* About */
-
-        .about {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-
-        .card {
-            padding: 30px;
-            border-radius: 22px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            backdrop-filter: blur(15px);
-            transition: .3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(124,92,255,.4);
-        }
-
-        .card h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-        }
-
-        .card p {
-            color: var(--muted);
-            line-height: 1.8;
-        }
-
-        /* Skills */
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .skill {
-            padding: 12px 17px;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            background: var(--card);
-            color: #ddd;
-            transition: .25s;
-        }
-
-        .skill:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent);
-        }
-
-        /* Projects */
-
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .project {
-            min-height: 270px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .project-number {
-            color: var(--accent);
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .project h3 {
-            font-size: 23px;
-            margin: 15px 0 10px;
-        }
-
-        .project p {
-            color: var(--muted);
-            line-height: 1.7;
-            font-size: 14px;
-        }
-
-        .project a {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .project a:hover {
-            color: var(--accent2);
-        }
-
-        /* Contact */
-
-        .contact {
-            text-align: center;
-            padding: 80px 20px;
-            border: 1px solid var(--border);
-            border-radius: 28px;
-            background: var(--card);
-        }
-
-        .contact h2 {
-            font-size: 45px;
-            margin-bottom: 15px;
-        }
-
-        .contact p {
-            color: var(--muted);
-            margin-bottom: 25px;
-        }
-
-        /* Quran Player */
-
-        .quran-player {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 9999;
-        }
-
-        #quranBtn {
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            background: rgba(15,15,20,.9);
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            backdrop-filter: blur(15px);
-            transition: .3s;
-            box-shadow: 0 10px 30px rgba(0,0,0,.3);
-        }
-
-        #quranBtn:hover {
-            transform: scale(1.08);
-            border-color: var(--accent);
-        }
-
-        .quran-label {
-            position: absolute;
-            right: 70px;
-            top: 50%;
-            transform: translateY(-50%);
-            white-space: nowrap;
-            background: rgba(10,10,15,.95);
-            border: 1px solid var(--border);
-            padding: 9px 13px;
-            border-radius: 10px;
-            font-size: 12px;
-            opacity: 0;
-            pointer-events: none;
-            transition: .3s;
-        }
-
-        .quran-player:hover .quran-label {
-            opacity: 1;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: #666;
-            font-size: 13px;
-        }
-
-        /* Animation */
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(25px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Mobile */
-
-        @media (max-width: 800px) {
-
-            nav ul {
-                display: none;
-            }
-
-            h1 {
-                letter-spacing: -3px;
-            }
-
-            .about {
-                grid-template-columns: 1fr;
-            }
-
-            .projects {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title h2 {
-                font-size: 34px;
-            }
-
-            .contact h2 {
-                font-size: 34px;
-            }
-
-            .hero p {
-                font-size: 16px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Zeyad | Developer</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg: #050509;
+    --card: rgba(255,255,255,.05);
+    --border: rgba(255,255,255,.1);
+    --text: #fff;
+    --muted: #9999a5;
+    --accent: #7c5cff;
+    --accent2: #00d4ff;
+}
+
+body {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(124,92,255,.15), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(0,212,255,.10), transparent 30%),
+        var(--bg);
+
+    color: var(--text);
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* =========================
+   CLICK TO ENTER
+========================= */
+
+#intro {
+    position: fixed;
+    inset: 0;
+
+    background:
+        radial-gradient(circle at center,
+        rgba(124,92,255,.18),
+        transparent 35%),
+        #050509;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 99999;
+
+    transition:
+        opacity .8s ease,
+        visibility .8s ease;
+}
+
+#intro.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.enter-container {
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.enter-logo {
+    font-size: 70px;
+    font-weight: 800;
+    letter-spacing: -4px;
+
+    margin-bottom: 25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #9c8cff,
+            #00d4ff
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.enter-text {
+    font-size: 14px;
+    letter-spacing: 5px;
+    color: #aaa;
+    transition: .3s;
+}
+
+.enter-container:hover .enter-text {
+    color: white;
+    letter-spacing: 7px;
+}
+
+.enter-line {
+    width: 70px;
+    height: 1px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--accent),
+        transparent
+    );
+
+    margin: 20px auto;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.glow {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+
+    border-radius: 50%;
+    filter: blur(130px);
+
+    opacity: .12;
+
+    pointer-events: none;
+    z-index: -1;
+}
+
+.glow.one {
+    background: var(--accent);
+    top: 5%;
+    left: -150px;
+}
+
+.glow.two {
+    background: var(--accent2);
+    bottom: 5%;
+    right: -150px;
+}
+
+/* =========================
+   NAV
+========================= */
+
+nav {
+    position: fixed;
+
+    top: 20px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: min(92%, 950px);
+
+    padding: 15px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(10,10,15,.75);
+
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    backdrop-filter: blur(20px);
+
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+nav ul {
+    list-style: none;
+
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: var(--muted);
+    text-decoration: none;
+
+    font-size: 14px;
+
+    transition: .25s;
+}
+
+nav a:hover {
+    color: white;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 120px 20px 70px;
+}
+
+.hero-content {
+    max-width: 850px;
+
+    animation: fadeUp 1s ease;
+}
+
+.badge {
+    display: inline-block;
+
+    padding: 8px 14px;
+
+    border: 1px solid var(--border);
+    border-radius: 50px;
+
+    background: var(--card);
+
+    color: #bbb3ff;
+
+    font-size: 13px;
+
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-size: clamp(55px, 9vw, 100px);
+
+    line-height: .95;
+
+    letter-spacing: -5px;
+
+    margin-bottom: 25px;
+}
+
+h1 span {
+    background:
+        linear-gradient(
+            90deg,
+            white,
+            #9b8cff,
+            #00d4ff
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+.hero p {
+    max-width: 650px;
+
+    margin: auto;
+
+    color: var(--muted);
+
+    font-size: 18px;
+
+    line-height: 1.8;
+}
+
+.buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 35px;
+
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 13px 22px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    font-size: 14px;
+
+    transition: .3s;
+}
+
+.btn-primary {
+    background: white;
+    color: black;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+}
+
+.btn-secondary {
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    color: white;
+}
+
+.btn-secondary:hover {
+    border-color: var(--accent);
+
+    transform: translateY(-3px);
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+section {
+    width: min(1100px, 92%);
+
+    margin: auto;
+
+    padding: 100px 0;
+}
+
+.section-title {
+    margin-bottom: 45px;
+}
+
+.section-title small {
+    color: var(--accent);
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.section-title h2 {
+    font-size: 42px;
+
+    margin-top: 8px;
+
+    letter-spacing: -2px;
+}
+
+.section-title p {
+    color: var(--muted);
+
+    margin-top: 10px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.about {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 25px;
+}
+
+.card {
+    padding: 30px;
+
+    border-radius: 22px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    backdrop-filter: blur(15px);
+
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(124,92,255,.4);
+}
+
+.card h3 {
+    font-size: 22px;
+
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: var(--muted);
+
+    line-height: 1.8;
+}
+
+/* =========================
+   SKILLS
+========================= */
+
+.skills {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+.skill {
+    padding: 12px 17px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: var(--card);
+
+    color: #ddd;
+
+    transition: .25s;
+}
+
+.skill:hover {
+    transform: translateY(-3px);
+
+    border-color: var(--accent);
+}
+
+/* =========================
+   PROJECTS
+========================= */
+
+.projects {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.project {
+    min-height: 270px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+}
+
+.project-number {
+    color: var(--accent);
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.project h3 {
+    font-size: 23px;
+
+    margin: 15px 0 10px;
+}
+
+.project p {
+    color: var(--muted);
+
+    line-height: 1.7;
+
+    font-size: 14px;
+}
+
+.project a {
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.project a:hover {
+    color: var(--accent2);
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact {
+    text-align: center;
+
+    padding: 80px 20px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 28px;
+
+    background: var(--card);
+}
+
+.contact h2 {
+    font-size: 45px;
+
+    margin-bottom: 15px;
+}
+
+.contact p {
+    color: var(--muted);
+
+    margin-bottom: 25px;
+}
+
+/* =========================
+   QURAN PLAYER
+========================= */
+
+.quran-player {
+    position: fixed;
+
+    bottom: 20px;
+    right: 20px;
+
+    z-index: 5000;
+}
+
+#quranBtn {
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+
+    border: 1px solid var(--border);
+
+    background: rgba(15,15,20,.9);
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(15px);
+
+    transition: .3s;
+}
+
+#quranBtn:hover {
+    transform: scale(1.08);
+
+    border-color: var(--accent);
+}
+
+.quran-label {
+    position: absolute;
+
+    right: 70px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    white-space: nowrap;
+
+    background: rgba(10,10,15,.95);
+
+    border: 1px solid var(--border);
+
+    padding: 9px 13px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: .3s;
+}
+
+.quran-player:hover .quran-label {
+    opacity: 1;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    padding: 40px 20px;
+
+    color: #666;
+
+    font-size: 13px;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+    nav ul {
+        display: none;
+    }
+
+    h1 {
+        letter-spacing: -3px;
+    }
+
+    .about {
+        grid-template-columns: 1fr;
+    }
+
+    .projects {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title h2 {
+        font-size: 34px;
+    }
+
+    .contact h2 {
+        font-size: 34px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .enter-logo {
+        font-size: 55px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <div class="glow one"></div>
-    <div class="glow two"></div>
+<!-- =========================
+     CLICK TO ENTER SCREEN
+========================= -->
 
-    <!-- Navigation -->
-    <nav>
-        <div class="logo">
-            Zeyad<span>.</span>
+<div id="intro">
+
+    <div
+        class="enter-container"
+        id="enterButton">
+
+        <div class="enter-logo">
+            Zeyad
         </div>
 
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+        <div class="enter-line"></div>
 
-
-    <!-- Hero -->
-    <header class="hero">
-
-        <div class="hero-content">
-
-            <div class="badge">
-                👋 Welcome to my portfolio
-            </div>
-
-            <h1>
-                Hi, I'm <span>Zeyad</span>
-            </h1>
-
-            <p>
-                I'm a developer who enjoys building modern websites,
-                applications and creative digital projects.
-            </p>
-
-            <div class="buttons">
-                <a href="#projects" class="btn btn-primary">
-                    View My Projects
-                </a>
-
-                <a href="#contact" class="btn btn-secondary">
-                    Contact Me
-                </a>
-            </div>
-
+        <div class="enter-text">
+            CLICK TO ENTER
         </div>
 
-    </header>
+    </div>
+
+</div>
 
 
-    <!-- About -->
-    <section id="about">
+<div class="glow one"></div>
+<div class="glow two"></div>
 
-        <div class="section-title">
-            <small>01 — About Me</small>
-            <h2>Who am I?</h2>
-            <p>A little information about me.</p>
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav>
+
+    <div class="logo">
+        Zeyad<span>.</span>
+    </div>
+
+    <ul>
+
+        <li>
+            <a href="#about">
+                About
+            </a>
+        </li>
+
+        <li>
+            <a href="#skills">
+                Skills
+            </a>
+        </li>
+
+        <li>
+            <a href="#projects">
+                Projects
+            </a>
+        </li>
+
+        <li>
+            <a href="#contact">
+                Contact
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            👋 Welcome to my portfolio
         </div>
 
-        <div class="about">
+        <h1>
+            Hi, I'm <span>Zeyad</span>
+        </h1>
 
-            <div class="card">
-                <h3>👨‍💻 About Me</h3>
+        <p>
+            I'm a developer who enjoys building modern websites,
+            applications and creative digital projects.
+        </p>
 
-                <p>
-                    Hello! I'm Zeyad, a developer interested in programming,
-                    web development and building useful projects.
-                    I enjoy learning new technologies and turning ideas
-                    into real applications.
-                </p>
-            </div>
+        <div class="buttons">
 
-            <div class="card">
-                <h3>🚀 What I Do</h3>
+            <a
+                href="#projects"
+                class="btn btn-primary">
 
-                <p>
-                    I build websites, APIs and applications using modern
-                    technologies. I'm especially interested in JavaScript,
-                    Node.js and creating clean user experiences.
-                </p>
-            </div>
+                View My Projects
 
-        </div>
+            </a>
 
-    </section>
+            <a
+                href="#contact"
+                class="btn btn-secondary">
 
+                Contact Me
 
-    <!-- Skills -->
-    <section id="skills">
-
-        <div class="section-title">
-            <small>02 — Skills</small>
-            <h2>Technologies I Use</h2>
-            <p>Some technologies I'm familiar with.</p>
-        </div>
-
-        <div class="skills">
-
-            <div class="skill">HTML</div>
-            <div class="skill">CSS</div>
-            <div class="skill">JavaScript</div>
-            <div class="skill">Node.js</div>
-            <div class="skill">Express.js</div>
-            <div class="skill">MySQL</div>
-            <div class="skill">MongoDB</div>
-            <div class="skill">Git</div>
-            <div class="skill">GitHub</div>
-            <div class="skill">REST APIs</div>
-
-        </div>
-
-    </section>
-
-
-    <!-- Projects -->
-    <section id="projects">
-
-        <div class="section-title">
-            <small>03 — Projects</small>
-            <h2>My Projects</h2>
-            <p>Some of the things I've built.</p>
-        </div>
-
-        <div class="projects">
-
-            <div class="card project">
-
-                <div>
-                    <div class="project-number">
-                        PROJECT 01
-                    </div>
-
-                    <h3>My Website</h3>
-
-                    <p>
-                        A modern personal website built with HTML,
-                        CSS and JavaScript.
-                    </p>
-                </div>
-
-                <a href="#" target="_blank">
-                    View Project →
-                </a>
-
-            </div>
-
-
-            <div class="card project">
-
-                <div>
-                    <div class="project-number">
-                        PROJECT 02
-                    </div>
-
-                    <h3>Node.js Project</h3>
-
-                    <p>
-                        A backend project built with Node.js and Express.
-                    </p>
-                </div>
-
-                <a href="#" target="_blank">
-                    View Project →
-                </a>
-
-            </div>
-
-
-            <div class="card project">
-
-                <div>
-                    <div class="project-number">
-                        PROJECT 03
-                    </div>
-
-                    <h3>My Next Project</h3>
-
-                    <p>
-                        Something new I'm currently working on.
-                    </p>
-                </div>
-
-                <a href="#" target="_blank">
-                    View Project →
-                </a>
-
-            </div>
+            </a>
 
         </div>
 
-    </section>
+    </div>
+
+</header>
 
 
-    <!-- Contact -->
-    <section id="contact">
+<!-- =========================
+     ABOUT
+========================= -->
 
-        <div class="contact">
+<section id="about">
 
-            <h2>Let's Connect</h2>
+    <div class="section-title">
 
-            <p>
-                Want to talk about a project or just say hello?
-            </p>
+        <small>
+            01 — About Me
+        </small>
 
-            <div class="buttons">
+        <h2>
+            Who am I?
+        </h2>
 
-                <a
-                    href="https://github.com/zeyad2030"
-                    target="_blank"
-                    class="btn btn-primary">
-                    GitHub
-                </a>
-
-                <a
-                    href="mailto:your-email@example.com"
-                    class="btn btn-secondary">
-                    Email Me
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- Quran Audio -->
-
-    <div class="quran-player">
-
-        <div class="quran-label">
-            تشغيل / كتم القرآن
-        </div>
-
-        <button id="quranBtn" title="تشغيل القرآن">
-            🔇
-        </button>
-
-        <audio
-            id="quranAudio"
-            loop
-            preload="none"
-            src="https://haramain.smart-fingers.com/uploads/makki/1431/3/yaldosry/2024-06-14-19-19-00-1178780.mp3">
-        </audio>
+        <p>
+            A little information about me.
+        </p>
 
     </div>
 
 
-    <!-- Footer -->
+    <div class="about">
 
-    <footer>
-        © 2026 Zeyad. All rights reserved.
-    </footer>
+        <div class="card">
+
+            <h3>
+                👨‍💻 About Me
+            </h3>
+
+            <p>
+                Hello! I'm Zeyad, a developer interested
+                in programming, web development and
+                building useful projects.
+                I enjoy learning new technologies
+                and turning ideas into real applications.
+            </p>
+
+        </div>
 
 
-    <script>
+        <div class="card">
 
-        const audio = document.getElementById("quranAudio");
-        const button = document.getElementById("quranBtn");
+            <h3>
+                🚀 What I Do
+            </h3>
 
-        let playing = false;
+            <p>
+                I build websites, APIs and applications
+                using modern technologies.
+                I'm especially interested in JavaScript,
+                Node.js and creating clean user experiences.
+            </p>
 
-        button.addEventListener("click", async () => {
+        </div>
 
-            if (!playing) {
+    </div>
 
-                try {
+</section>
 
-                    await audio.play();
 
-                    playing = true;
+<!-- =========================
+     SKILLS
+========================= -->
 
-                    button.textContent = "🔊";
-                    button.title = "كتم القرآن";
+<section id="skills">
 
-                } catch (error) {
+    <div class="section-title">
 
-                    console.log("Audio could not be played:", error);
+        <small>
+            02 — Skills
+        </small>
 
-                }
+        <h2>
+            Technologies I Use
+        </h2>
 
-            } else {
+        <p>
+            Some technologies I'm familiar with.
+        </p>
 
-                audio.pause();
+    </div>
 
-                playing = false;
 
-                button.textContent = "🔇";
-                button.title = "تشغيل القرآن";
-            }
+    <div class="skills">
 
-        });
+        <div class="skill">HTML</div>
+        <div class="skill">CSS</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">Node.js</div>
+        <div class="skill">Express.js</div>
+        <div class="skill">MySQL</div>
+        <div class="skill">MongoDB</div>
+        <div class="skill">Git</div>
+        <div class="skill">GitHub</div>
+        <div class="skill">REST APIs</div>
 
-        audio.addEventListener("ended", () => {
+    </div>
 
-            playing = false;
+</section>
 
-            button.textContent = "🔇";
-            button.title = "تشغيل القرآن";
 
-        });
+<!-- =========================
+     PROJECTS
+========================= -->
 
-    </script>
+<section id="projects">
+
+    <div class="section-title">
+
+        <small>
+            03 — Projects
+        </small>
+
+        <h2>
+            My Projects
+        </h2>
+
+        <p>
+            Some of the things I've built.
+        </p>
+
+    </div>
+
+
+    <div class="projects">
+
+        <div class="card project">
+
+            <div>
+
+                <div class="project-number">
+                    PROJECT 01
+                </div>
+
+                <h3>
+                    My Website
+                </h3>
+
+                <p>
+                    A modern personal website built
+                    with HTML, CSS and JavaScript.
+                </p>
+
+            </div>
+
+            <a href="#" target="_blank">
+                View Project →
+            </a>
+
+        </div>
+
+
+        <div class="card project">
+
+            <div>
+
+                <div class="project-number">
+                    PROJECT 02
+                </div>
+
+                <h3>
+                    Node.js Project
+                </h3>
+
+                <p>
+                    A backend project built with
+                    Node.js and Express.
+                </p>
+
+            </div>
+
+            <a href="#" target="_blank">
+                View Project →
+            </a>
+
+        </div>
+
+
+        <div class="card project">
+
+            <div>
+
+                <div class="project-number">
+                    PROJECT 03
+                </div>
+
+                <h3>
+                    My Next Project
+                </h3>
+
+                <p>
+                    Something new I'm currently
+                    working on.
+                </p>
+
+            </div>
+
+            <a href="#" target="_blank">
+                View Project →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section id="contact">
+
+    <div class="contact">
+
+        <h2>
+            Let's Connect
+        </h2>
+
+        <p>
+            Want to talk about a project or
+            just say hello?
+        </p>
+
+        <div class="buttons">
+
+            <a
+                href="https://github.com/zeyad2030"
+                target="_blank"
+                class="btn btn-primary">
+
+                GitHub
+
+            </a>
+
+            <a
+                href="mailto:your-email@example.com"
+                class="btn btn-secondary">
+
+                Email Me
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     QURAN AUDIO
+========================= -->
+
+<div class="quran-player">
+
+    <div class="quran-label">
+        تشغيل / كتم القرآن
+    </div>
+
+    <button
+        id="quranBtn"
+        title="كتم القرآن">
+
+        🔊
+
+    </button>
+
+    <audio
+        id="quranAudio"
+        loop
+        preload="auto"
+        src="https://haramain.smart-fingers.com/uploads/makki/1431/3/yaldosry/2024-06-14-19-19-00-1178780.mp3">
+    </audio>
+
+</div>
+
+
+<footer>
+
+    © 2026 Zeyad. All rights reserved.
+
+</footer>
+
+
+<script>
+
+/* =========================
+   CLICK TO ENTER + AUDIO
+========================= */
+
+const intro =
+    document.getElementById("intro");
+
+const enterButton =
+    document.getElementById("enterButton");
+
+const audio =
+    document.getElementById("quranAudio");
+
+const quranBtn =
+    document.getElementById("quranBtn");
+
+
+let playing = false;
+
+
+/*
+    This click is important because
+    browsers normally block audible
+    autoplay until the user interacts
+    with the page.
+*/
+
+enterButton.addEventListener("click", async () => {
+
+    try {
+
+        await audio.play();
+
+        playing = true;
+
+        quranBtn.textContent = "🔊";
+
+    } catch (error) {
+
+        console.log(
+            "Audio could not start:",
+            error
+        );
+
+    }
+
+
+    intro.classList.add("hide");
+
+});
+
+
+/* =========================
+   MUTE / UNMUTE
+========================= */
+
+quranBtn.addEventListener("click", async () => {
+
+    if (audio.paused) {
+
+        try {
+
+            await audio.play();
+
+            playing = true;
+
+            quranBtn.textContent = "🔊";
+
+        } catch (error) {
+
+            console.log(error);
+
+        }
+
+    } else {
+
+        audio.pause();
+
+        playing = false;
+
+        quranBtn.textContent = "🔇";
+
+    }
+
+});
+
+
+/* =========================
+   AUDIO ENDED
+========================= */
+
+audio.addEventListener("ended", () => {
+
+    playing = false;
+
+    quranBtn.textContent = "🔇";
+
+});
+
+</script>
 
 </body>
 </html>
