@@ -461,57 +461,114 @@ section {
 
 .projects {
     display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
 }
 
 .project {
-    min-height: 270px;
-
+    min-height: 0;
+    padding: 0;
+    overflow: hidden;
     display: flex;
-
     flex-direction: column;
+}
 
-    justify-content: space-between;
+.project-image {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    background: #101018;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s ease, filter .5s ease;
+}
+
+.project:hover .project-image img {
+    transform: scale(1.06);
+    filter: brightness(.75);
+}
+
+.project-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 7px 11px;
+    border-radius: 50px;
+    background: rgba(5,5,9,.78);
+    border: 1px solid rgba(255,255,255,.15);
+    backdrop-filter: blur(10px);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.project-body {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .project-number {
     color: var(--accent);
-
-    font-size: 13px;
-
+    font-size: 12px;
     font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .project h3 {
-    font-size: 23px;
-
-    margin: 15px 0 10px;
+    font-size: 22px;
+    margin: 10px 0;
 }
 
 .project p {
     color: var(--muted);
-
     line-height: 1.7;
-
     font-size: 14px;
+    margin-bottom: 18px;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+
+.project-tech span {
+    padding: 6px 9px;
+    border-radius: 8px;
+    background: rgba(255,255,255,.05);
+    border: 1px solid var(--border);
+    color: #bbb;
+    font-size: 11px;
 }
 
 .project a {
     color: white;
-
     text-decoration: none;
-
     font-size: 14px;
-
     font-weight: 600;
 }
 
 .project a:hover {
     color: var(--accent2);
+}
+
+@media (max-width: 800px) {
+    .projects {
+        grid-template-columns: 1fr;
+    }
+
+    .project-image {
+        height: 200px;
+    }
 }
 
 /* =========================
@@ -915,103 +972,134 @@ footer {
 <section id="projects">
 
     <div class="section-title">
-
-        <small>
-            03 — Projects
-        </small>
-
-        <h2>
-            My Projects
-        </h2>
-
-        <p>
-            Some of the things I've built.
-        </p>
-
+        <small>03 — Projects</small>
+        <h2>Featured Projects</h2>
+        <p>Real-world applications, e-commerce and database-driven experiments.</p>
     </div>
-
 
     <div class="projects">
 
-        <div class="card project">
-
-            <div>
-
-                <div class="project-number">
-                    PROJECT 01
-                </div>
-
-                <h3>
-                    My Website
-                </h3>
-
-                <p>
-                    A modern personal website built
-                    with HTML, CSS and JavaScript.
-                </p>
-
+        <div class="card project project-featured">
+            <div class="project-image">
+                <img src="images/printflow.png" alt="PrintFlow Printing Management System"
+                     onerror="this.src='https://placehold.co/900x500/11111a/ffffff?text=PrintFlow'">
+                <span class="project-badge">Full-Stack</span>
             </div>
-
-            <a href="#" target="_blank">
-                View Project →
-            </a>
-
+            <div class="project-body">
+                <div class="project-number">PROJECT 01</div>
+                <h3>PrintFlow — Printing Management System</h3>
+                <p>
+                    A complete management system for a printing company with dashboards,
+                    companies, warehouse management, users, permissions and sales data.
+                </p>
+                <div class="project-tech">
+                    <span>Node.js</span><span>Express</span><span>MySQL</span><span>JavaScript</span>
+                </div>
+                
+            </div>
         </div>
 
-
         <div class="card project">
-
-            <div>
-
-                <div class="project-number">
-                    PROJECT 02
-                </div>
-
-                <h3>
-                    Node.js Project
-                </h3>
-
-                <p>
-                    A backend project built with
-                    Node.js and Express.
-                </p>
-
+            <div class="project-image">
+                <img src="images/store.png" alt="Online Store"
+                     onerror="this.src='https://placehold.co/900x500/11111a/ffffff?text=Online+Store'">
+                <span class="project-badge">E-Commerce</span>
             </div>
-
-            <a href="#" target="_blank">
-                View Project →
-            </a>
-
+            <div class="project-body">
+                <div class="project-number">PROJECT 02</div>
+                <h3>Online Store</h3>
+                <p>
+                    A modern online store with products, categories, shopping cart,
+                    customer accounts and database-backed product management.
+                </p>
+                <div class="project-tech">
+                    <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Node.js</span><span>MySQL</span>
+                </div>
+                
+            </div>
         </div>
 
+        <div class="card project">
+            <div class="project-image">
+                <img src="images/dashboard.jpg" alt="Database Dashboard"
+                     onerror="this.src='https://placehold.co/900x500/11111a/ffffff?text=Database+Dashboard'">
+                <span class="project-badge">Database</span>
+            </div>
+            <div class="project-body">
+                <div class="project-number">PROJECT 03</div>
+                <h3>Database Dashboard</h3>
+                <p>
+                    Experimental dashboard connected to a database for managing,
+                    filtering and displaying structured business data.
+                </p>
+                <div class="project-tech">
+                    <span>Node.js</span><span>Express</span><span>MySQL</span><span>REST API</span>
+                </div>
+                
+            </div>
+        </div>
 
         <div class="card project">
-
-            <div>
-
-                <div class="project-number">
-                    PROJECT 03
-                </div>
-
-                <h3>
-                    My Next Project
-                </h3>
-
-                <p>
-                    Something new I'm currently
-                    working on.
-                </p>
-
+            <div class="project-image">
+                <img src="images/api.jpg" alt="REST API Project"
+                     onerror="this.src='https://placehold.co/900x500/11111a/ffffff?text=REST+API'">
+                <span class="project-badge">Backend</span>
             </div>
+            <div class="project-body">
+                <div class="project-number">PROJECT 04</div>
+                <h3>REST API & Authentication</h3>
+                <p>
+                    A database-driven backend experiment featuring authentication,
+                    users, permissions and REST API endpoints.
+                </p>
+                <div class="project-tech">
+                    <span>Node.js</span><span>Express</span><span>MySQL</span><span>REST API</span>
+                </div>
+                
+            </div>
+        </div>
 
-            <a href="#" target="_blank">
-                View Project →
-            </a>
+        <div class="card project">
+            <div class="project-image">
+                <img src="images/analytics.jpg" alt="Analytics System"
+                     onerror="this.src='https://placehold.co/900x500/11111a/ffffff?text=Analytics'">
+                <span class="project-badge">Experimental</span>
+            </div>
+            <div class="project-body">
+                <div class="project-number">PROJECT 05</div>
+                <h3>Business Analytics</h3>
+                <p>
+                    Experimental project for visualizing sales, customers and
+                    database statistics through a clean dashboard.
+                </p>
+                <div class="project-tech">
+                    <span>JavaScript</span><span>Node.js</span><span>MySQL</span>
+                </div>
+                
+            </div>
+        </div>
 
+        <div class="card project">
+            <div class="project-image">
+                <img src="images/project6.jpg" alt="Web Application"
+                     onerror="this.src='https://placehold.co/900x500/11111a/ffffff?text=Web+Application'">
+                <span class="project-badge">Web App</span>
+            </div>
+            <div class="project-body">
+                <div class="project-number">PROJECT 06</div>
+                <h3>Database Web Application</h3>
+                <p>
+                    A practical web application experiment focused on CRUD operations,
+                    database relationships and a responsive interface.
+                </p>
+                <div class="project-tech">
+                    <span>HTML</span><span>CSS</span><span>JavaScript</span><span>MongoDB</span>
+                </div>
+                
+            </div>
         </div>
 
     </div>
-
 </section>
 
 
@@ -1110,6 +1198,9 @@ const enterButton =
 const audio =
     document.getElementById("quranAudio");
 
+
+// Lower the Quran audio volume.
+audio.volume = 0.20;
 const quranBtn =
     document.getElementById("quranBtn");
 
@@ -1200,4 +1291,3 @@ audio.addEventListener("ended", () => {
 
 </body>
 </html>
-
